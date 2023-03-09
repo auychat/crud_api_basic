@@ -87,6 +87,9 @@ func deleteMovie(w http.ResponseWriter, r *http.Request) {
 	for index, item := range movies {
 		if item.ID == params["id"] {
 			movies = append(movies[:index], movies[index+1:]...)
+
+			//ส่งข้อความกลับออกไปว่าได้ลบหนังออกไปแล้ว
+			json.NewEncoder(w).Encode(item.Title + " has been deleted")
 			break
 		}
 	}
